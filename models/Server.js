@@ -14,6 +14,8 @@ const __dirname = dirname( __filename )
 
 // IMPORTAMOS NUESTRAS VISTAS
  import vistaHome  from '../routes/vistaHome.routes.js';
+ import vistaLogin from '../routes/vistaLogin.routes.js';
+ import vistaRegistro from '../routes/vistaRegistro.routes.js';
 // import rutaPost from '../routes/vistaPost.routes.js'
 // import rutaGet from '../routes/vistaGetUsuarios.routes.js';
 // import rutaDelete from '../routes/vistaDeleteUsuario.routes.js';
@@ -39,7 +41,8 @@ class Server {
 
         this.Paths = {
             rootHome:'/',
-            // rootPost:'/usuario',
+            rootLogin:'/login',
+            rootRegistro:'/registro',
             // rootGet:'/usuarios',
             // rootDelete:'/usuario',
             // rootPut:'/usuario',
@@ -60,11 +63,16 @@ class Server {
         this.app.use( express.urlencoded({ extended: true }));
         this.app.use('/jquery',express.static(  `${__dirname}/../node_modules/jquery/dist`  ));
         this.app.use('/css', express.static( `${__dirname}/../public/assets/css` ))
+        this.app.use('/bootstrap', express.static( `${__dirname}/../node_modules/bootstrap/dist/css`));
+        this.app.use('/bootstrapjs',express.static(  `${__dirname}/../node_modules/bootstrap/dist/js`  ));
+        this.app.use('/img',express.static( `${__dirname}/../public/assets/imgs`  ));
     }
 
 
     routes(){
         this.app.use( this.Paths.rootHome, vistaHome );
+        this.app.use( this.Paths.rootLogin, vistaLogin );
+        this.app.use( this.Paths.rootRegistro, vistaRegistro );
         // this.app.use( this.Paths.rootPost, rutaPost);
         // this.app.use( this.Paths.rootGet, rutaGet );
         // this.app.use(this.Paths.rootDelete, rutaDelete);
