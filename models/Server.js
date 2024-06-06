@@ -16,6 +16,9 @@ const __dirname = dirname( __filename )
  import vistaHome  from '../routes/vistaHome.routes.js';
  import vistaLogin from '../routes/vistaLogin.routes.js';
  import vistaRegistro from '../routes/vistaRegistro.routes.js';
+ import vistaAdmin from '../routes/vistaAdmin.routes.js';
+ import vistaDatos from '../routes/vistaDatos.routes.js';
+
 // import rutaPost from '../routes/vistaPost.routes.js'
 // import rutaGet from '../routes/vistaGetUsuarios.routes.js';
 // import rutaDelete from '../routes/vistaDeleteUsuario.routes.js';
@@ -43,6 +46,8 @@ class Server {
             rootHome:'/',
             rootLogin:'/login',
             rootRegistro:'/registro',
+            rootAdmin:'/admin',
+            rootDatos:'/datos',
             // rootGet:'/usuarios',
             // rootDelete:'/usuario',
             // rootPut:'/usuario',
@@ -73,6 +78,8 @@ class Server {
         this.app.use( this.Paths.rootHome, vistaHome );
         this.app.use( this.Paths.rootLogin, vistaLogin );
         this.app.use( this.Paths.rootRegistro, vistaRegistro );
+        this.app.use( this.Paths.rootAdmin, vistaAdmin );
+        this.app.use( this.Paths.rootDatos, vistaDatos );
         // this.app.use( this.Paths.rootPost, rutaPost);
         // this.app.use( this.Paths.rootGet, rutaGet );
         // this.app.use(this.Paths.rootDelete, rutaDelete);
