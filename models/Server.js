@@ -22,6 +22,7 @@ const __dirname = dirname( __filename )
 import postParticipante from '../routes/postParticipante.routes.js';
 import getParticipantes from '../routes/getParticipantes.routes.js';
 import putParticipante from '../routes/putParticipante.routes.js';
+import deleteParticipante from '../routes/deleteParticipante.routes.js';
 // import rutaPost from '../routes/vistaPost.routes.js'
 // import rutaGet from '../routes/vistaGetUsuarios.routes.js';
 // import rutaDelete from '../routes/vistaDeleteUsuario.routes.js';
@@ -55,6 +56,7 @@ class Server {
             rootPostParticipante:'/skater',
             rootGetParticipantes:'/skaters',
             rootPutParticipante:'/updateSkater',
+            rootDeleteParticipante:'/deleteSkater',
             // rootGet:'/usuarios',
             // rootDelete:'/usuario',
             // rootPut:'/usuario',
@@ -90,6 +92,8 @@ class Server {
         this.app.use( this.Paths.rootPostParticipante, postParticipante );
         this.app.use( this.Paths.rootGetParticipantes, getParticipantes );
         this.app.use( this.Paths.rootPutParticipante, putParticipante );
+        this.app.use( this.Paths.rootDeleteParticipante, deleteParticipante );
+
         // this.app.use( this.Paths.rootPost, rutaPost);
         // this.app.use( this.Paths.rootGet, rutaGet );
         // this.app.use(this.Paths.rootDelete, rutaDelete);

@@ -2,6 +2,7 @@
 import Post_Participante from "../models/Post_Participante.js";
 import Get_Participantes from "../models/Get_Participantes.js";
 import Put_Participante from "../models/Put_Participante.js";
+import Delete_Participante from "../models/Delete_Participante.js";
 
 // import Get_Usuarios from "../models/Get_Usuarios.js";
 // import Delete_Usuario from "../models/Delete_Usuario.js";
@@ -28,15 +29,15 @@ export const getParticipantes = async (req, res) => {
   }
 }
 
-// export const deleteUsuario = async (req, res) => {
-//   try {
-//        const id  = req.query.id;
-//        const response = await Delete_Usuario(id);
-//        res.status(200).send(response.rows);
-//    } catch (error) {
-//        res.status(500).json({ error: "Error al borrar usuario" });
-//    }
-// }
+export const deleteParticipante = async (req, res) => {
+  try {
+       const id  = req.query.id;
+       const response = await Delete_Participante(id);
+       res.status(200).send(response.rows);
+   } catch (error) {
+       res.status(500).json({ error: "Error al borrar usuario" });
+   }
+}
 
 export const putParticipante = async (req, res) => {
    
