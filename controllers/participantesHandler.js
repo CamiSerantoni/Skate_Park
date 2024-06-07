@@ -1,6 +1,7 @@
 
 import Post_Participante from "../models/Post_Participante.js";
 import Get_Participantes from "../models/Get_Participantes.js";
+import Put_Participante from "../models/Put_Participante.js";
 
 // import Get_Usuarios from "../models/Get_Usuarios.js";
 // import Delete_Usuario from "../models/Delete_Usuario.js";
@@ -37,19 +38,19 @@ export const getParticipantes = async (req, res) => {
 //    }
 // }
 
-// export const putUsuario = async (req, res) => {
+export const putParticipante = async (req, res) => {
    
-//   try {
-//      // console.log("Salid req", req)
-//   const {id}  = req.query;
-  
-//   const { nombre, balance } = req.body;
+  try {
+     // console.log("Salid req", req)
+  const {id}  = req.query;
+  console.log(id)
+  const { nombre, anos_experiencia, especialidad } = req.body;
+console.log(nombre, anos_experiencia, especialidad)
+  const putData = await Put_Participante({id, nombre, anos_experiencia, especialidad});
 
-//   const putData = await Put_Usuario({id, nombre, balance});
-
-//   res.status(200).send(putData.rows);   
-// } catch (error) {
-//   res.status(500).json({ error: "Error al actualizar el usuario" });
-// }
-
+  res.status(200).send(putData.rows);   
+} catch (error) {
+  res.status(500).json({ error: "Error al actualizar el usuario" });
+}
+}
 
