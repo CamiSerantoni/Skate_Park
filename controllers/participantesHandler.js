@@ -1,5 +1,6 @@
 
 import Post_Participante from "../models/Post_Participante.js";
+import Get_Participantes from "../models/Get_Participantes.js";
 
 // import Get_Usuarios from "../models/Get_Usuarios.js";
 // import Delete_Usuario from "../models/Delete_Usuario.js";
@@ -16,14 +17,15 @@ import Post_Participante from "../models/Post_Participante.js";
     }
 }
 
-// export const getUsuarios = async (req, res) => {
-//   try {
-//       const getData = await Get_Usuarios();
-//       res.status(200).json({result: getData.rows});
-//   } catch (error) {
-//       res.status(500).json({ error: "Error al obtener los usuarios" });
-//   }
-// }
+export const getParticipantes = async (req, res) => {
+  try {
+      const getData = await Get_Participantes();
+      console.log(getData, 'GET DATAAAAAA')
+      res.status(200).json({result: getData.rows});
+  } catch (error) {
+      res.status(500).json({ error: "Error al obtener los usuarios" });
+  }
+}
 
 // export const deleteUsuario = async (req, res) => {
 //   try {
