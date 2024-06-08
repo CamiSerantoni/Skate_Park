@@ -81,6 +81,7 @@ class Server {
         this.app.use( express.urlencoded({ extended: true }));
         this.app.use('/jquery',express.static(  `${__dirname}/../node_modules/jquery/dist`  ));
         this.app.use('/css', express.static( `${__dirname}/../public/assets/css` ))
+        this.app.use('/js', express.static( `${__dirname}/../public/assets/js` ))
         this.app.use('/bootstrap', express.static( `${__dirname}/../node_modules/bootstrap/dist/css`));
         this.app.use('/bootstrapjs',express.static(  `${__dirname}/../node_modules/bootstrap/dist/js`  ));
         this.app.use('/axios', express.static(  `${__dirname}/../node_modules/axios/dist`  ));
