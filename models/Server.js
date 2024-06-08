@@ -1,11 +1,14 @@
 // Importamos express
-import express from 'express';
+import express, { response } from 'express';
 // Importamos nuestro moto de plantilla
 import { create } from 'express-handlebars';
 
 // Creación de variables de entorno
 import { fileURLToPath } from 'url'
 import { dirname } from "path";
+import expressFileUpload from 'express-fileupload';
+import jwt from 'jsonwebtoken';
+
 
 
 // Variables que me permiten mostrar el path donde estoy en el proyecto
@@ -23,6 +26,7 @@ import postParticipante from '../routes/postParticipante.routes.js';
 import getParticipantes from '../routes/getParticipantes.routes.js';
 import putParticipante from '../routes/putParticipante.routes.js';
 import deleteParticipante from '../routes/deleteParticipante.routes.js';
+import { abort } from 'process';
 // import rutaPost from '../routes/vistaPost.routes.js'
 // import rutaGet from '../routes/vistaGetUsuarios.routes.js';
 // import rutaDelete from '../routes/vistaDeleteUsuario.routes.js';
@@ -79,7 +83,15 @@ class Server {
         this.app.use('/css', express.static( `${__dirname}/../public/assets/css` ))
         this.app.use('/bootstrap', express.static( `${__dirname}/../node_modules/bootstrap/dist/css`));
         this.app.use('/bootstrapjs',express.static(  `${__dirname}/../node_modules/bootstrap/dist/js`  ));
+        this.app.use('/axios', express.static(  `${__dirname}/../node_modules/axios/dist`  ));
         this.app.use('/img',express.static( `${__dirname}/../public/assets/imgs`  ));
+        this.app.use(expressFileUpload({
+            limits: 5000000,
+            abortOnLimit: true,
+            responseOnLimit: 'El peso del archivo supera los  5mb', 
+
+        }));
+         
     }
 
 
