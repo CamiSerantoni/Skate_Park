@@ -55,3 +55,6 @@ console.log(nombre, anos_experiencia, especialidad)
 }
 }
 
+export const postLogin = async (req, res) => {
+
+}

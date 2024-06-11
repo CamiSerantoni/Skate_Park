@@ -26,7 +26,7 @@ import postParticipante from '../routes/postParticipante.routes.js';
 import getParticipantes from '../routes/getParticipantes.routes.js';
 import putParticipante from '../routes/putParticipante.routes.js';
 import deleteParticipante from '../routes/deleteParticipante.routes.js';
-import { abort } from 'process';
+import rutaSignin from '../routes/postLogin.routes.js';
 // import rutaPost from '../routes/vistaPost.routes.js'
 // import rutaGet from '../routes/vistaGetUsuarios.routes.js';
 // import rutaDelete from '../routes/vistaDeleteUsuario.routes.js';
@@ -61,6 +61,7 @@ class Server {
             rootGetParticipantes:'/skaters',
             rootPutParticipante:'/updateSkater',
             rootDeleteParticipante:'/deleteSkater',
+            rootSignin: '/signin',
             // rootGet:'/usuarios',
             // rootDelete:'/usuario',
             // rootPut:'/usuario',
@@ -78,7 +79,8 @@ class Server {
     middlewares(){
         this.app.use( express.json() );
         this.app.use( express.static('public') );
-        this.app.use( express.urlencoded({ extended: true }));
+        this.app.use( express.urlencoded({ extended: false }));
+    
         this.app.use('/jquery',express.static(  `${__dirname}/../node_modules/jquery/dist`  ));
         this.app.use('/css', express.static( `${__dirname}/../public/assets/css` ))
         this.app.use('/js', express.static( `${__dirname}/../public/assets/js` ))
@@ -106,7 +108,7 @@ class Server {
         this.app.use( this.Paths.rootGetParticipantes, getParticipantes );
         this.app.use( this.Paths.rootPutParticipante, putParticipante );
         this.app.use( this.Paths.rootDeleteParticipante, deleteParticipante );
-
+        this.app.use( this.Paths.rootSignin, rutaSignin);
         // this.app.use( this.Paths.rootPost, rutaPost);
         // this.app.use( this.Paths.rootGet, rutaGet );
         // this.app.use(this.Paths.rootDelete, rutaDelete);

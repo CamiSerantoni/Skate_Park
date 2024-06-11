@@ -1,59 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-{{!--
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
-  <link rel="stylesheet" href="estilos.css" />
-</head> --}}
-
 <body>
   <h1>Skate Park</h1>
-
   <div class="py-4">
     <h2>Registro</h2>
-    <hr />
-
-    <form action="/register" method="POST" enctype="multipart/form-data">
-      <div class="mb-3 row w-50 m-auto">
-        <div class="mb-3  col-12 col-sm-6">
-          <label>Email</label>
-          <input name="email" class="form-control m-auto" type="email" />
+    <hr class="w-50" />
+    <form id="registro">
+      <div class="form-group row w-50 m-auto">
+        <div class="form-group col-12 col-sm-6">
+          <label for="email">Email</label>
+          <input class="form-control m-auto" type="email" id="email" name="email" required />
         </div>
-        <div class="mb-3 col-12 col-sm-6">
-          <label>Nombre</label>
-          <input name="name" class="form-control m-auto" type="text" />
+        <div class="form-group col-12 col-sm-6">
+          <label for="nombre">Nombre</label>
+          <input class="form-control m-auto" type="text" id="nombre" name="nombre" required />
         </div>
-        <div class="mb-3  col-12 col-sm-6">
-          <label>Password</label>
-          <input name="password" class="form-control m-auto" type="password" />
+        <div class="form-group col-12 col-sm-6">
+          <label for ="password">Password</label>
+          <input class="form-control m-auto" type="password" id="password" name="password" required />
         </div>
-        <div class="mb-3  col-12 col-sm-6">
-          <label>Repita la password</label>
-          <input name="passwordConfirm" class="form-control m-auto" type="password" />
+        <div class="form-group col-12 col-sm-6">
+          <label for="password2">Repita la password</label>
+          <input class="form-control m-auto" id="password2" />
         </div>
-        <div class="mb-3  col-12 col-sm-6">
-          <label>Años de experiencia</label>
-          <input name="experience" class="form-control m-auto" type="number" />
+        <div class="form-group col-12 col-sm-6">
+          <label for="experiencia">Años de experiencia</label>
+          <input class="form-control m-auto" type="number" id="experiencia" name="anos_experiencia" required />
         </div>
-        <div class="mb-3  col-12 col-sm-6">
-          <label>Especialidad</label>
-          <input name="specialty" class="form-control m-auto" type="text" />
+        <div class="form-group col-12 col-sm-6">
+          <label for="especialidad">Especialidad</label>
+          <input class="form-control m-auto" type="text" id="especialidad" name="especialidad" required />
         </div>
-        <div class="mb-3 col-12 col-sm-12">
-          <label>Foto de perfil</label>
-          <input name="profilePicture" type="file" />
+        <div class="form-group col-12 col-sm-12">
+          <label for="fileInput">Foto de perfil</label>
+          <input type="file" id="fileInput" name="foto" />
         </div>
       </div>
-      <button class="btn btn-info mb-3">Registrarme</button>
+      <button class="btn btn-info mb-3" onclick="registrar()">Registrarme</button>
       <p><a href="/login"> Iniciar sesión</a></p>
     </form>
-  </div>
 </body>
 
-</html>
+<script>
+ function registrar() {
+            console.log('DENTRO DEL REGISTRAR')
+            let email = document.getElementById('email');
+            let nombre = document.getElementById('nombre');
+            let password = document.getElementById('password');
+            let password2 = document.getElementById('password2');
+            let experiencia = document.getElementById('experiencia');
+            let especialidad = document.getElementById('especialidad');
+            let file = document.getElementById('fileInput');
+            if (!email.value || !nombre.value || !password.value || !password2.value || !experiencia.value || !especialidad.value) {
+                alert('Favor, complete todos los campos');
+                return;
+            }
+            if (password.value !== password2.value) {
+                alert('Las contraseñas no coinciden');
+                return;
+            }
+            axios.post('skater', {
+                email: email.value,
+                nombre: nombre.value,
+                password: password.value,
+                anos_experiencia: experiencia.value,
+                especialidad: especialidad.value,
+                foto: file.value,
+                estado: false
+            }).then(response => {//Esto no funciona
+                console.log("usuario registrado", response);
+                alert('Usuario registrado exitosamente');
+                //getData();
+            }).catch((error) => {
+                console.error(error);
+            });
+        }
+
+
+
+
+
+</script>

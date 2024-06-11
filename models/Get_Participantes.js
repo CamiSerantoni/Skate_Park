@@ -10,7 +10,7 @@ const Get_Participantes = async() => {
         const resultado = await client.query(consulta);
         return resultado;
     } catch (error) {
-        return console.error('Error al obtener repertorios', error.code, error.stack, error.message);
+        return console.error('Error al obtener participantes', error.code, error.stack, error.message);
     } finally {
         if (client) {
             client.release();

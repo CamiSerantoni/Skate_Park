@@ -14,6 +14,44 @@
     {{!-- Instalación js --}}
     <script src="/bootstrapjs/bootstrap.min.js"></script>
     <script src="/axios/axios.min.js"></script>
-    <scrip src="/js/app.js"></script>
+{{!-- <script src="/js/main.js"></script> --}}
 </body>
 </html>
+
+<script>
+
+
+
+function getData() {
+    // Limpiar el contenido del elemento con id 'cuerpo'
+    document.getElementById('cuerpo').innerHTML = '';
+    // Realizar una solicitud GET utilizando axios
+    axios.get('/skaters')
+      .then((response) => {
+        const participantes = response.data.result;
+        console.log(participantes);
+        participantes.forEach((p, i) => {
+          // Crear un nuevo elemento de fila de tabla
+          const row = document.createElement('tr');
+          // Crear y agregar las celdas a la fila
+          row.innerHTML = `
+            <th scope="row">${i + 1}</th>
+            <td>
+            <div></div>
+          </td>
+            <td>${p.nombre}</td>
+            <td>${p.anos_experiencia}</td>
+            <td>${p.especialidad}</td>
+            <td class="text-success font-weight-bold">En revisión</td>
+          `;
+          // Agregar la fila al cuerpo de la tabla
+          document.getElementById('cuerpo').appendChild(row);
+        });
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }
+
+  getData()
+</script>
